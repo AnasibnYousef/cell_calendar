@@ -82,13 +82,7 @@ class _DayCell extends HookConsumerWidget {
           onCellTapped?.call(date);
         },
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
-              right:
-                  BorderSide(color: Theme.of(context).dividerColor, width: 1),
-            ),
-          ),
+          decoration: BoxDecoration(),
           child: MeasureSize(
             onChange: (size) {
               final sizeState = ref.read(cellHeightProvider);
