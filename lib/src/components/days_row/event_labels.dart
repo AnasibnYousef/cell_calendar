@@ -58,10 +58,14 @@ class EventLabels extends HookConsumerWidget {
     final eventsOnTheDay = _eventsOnTheDay(date, events);
     final hasEnoughSpace = _hasEnoughSpace(cellHeight, eventsOnTheDay.length);
     final maxIndex = _maxIndex(cellHeight, eventsOnTheDay.length);
+    int len = 0;
+    if (eventsOnTheDay.length > 0) {
+      len = 1;
+    }
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: eventsOnTheDay.length,
+      itemCount: len,
       itemBuilder: (context, index) {
         if (hasEnoughSpace) {
           return _EventLabel(eventsOnTheDay[index]);
@@ -97,12 +101,17 @@ class _EventLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: event.eventBackgroundColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
+        ),
+      ),
       margin: EdgeInsets.only(right: 4),
       height: 20,
       width: double.infinity,
-      color: event.eventBackgroundColor,
       child: Text(
-        event.eventName,
+        event.totalHours,
         style: event.eventTextStyle,
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
