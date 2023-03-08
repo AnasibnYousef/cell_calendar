@@ -9,6 +9,7 @@ class CalendarEvent {
     required this.eventDate,
     required this.eventTextStyle,
     this.eventBackgroundColor = Colors.blue,
+    required this.totalHours,
     this.eventID,
   });
 
@@ -17,4 +18,5 @@ class CalendarEvent {
   final DateTime eventDate;
   final String? eventID;
   final Color eventBackgroundColor;
+  final String totalHours;
 }
