@@ -78,10 +78,6 @@ class EventLabels extends HookConsumerWidget {
               _EventLabel(
                 eventsOnTheDay[index],
               ),
-              Icon(
-                Icons.more_horiz,
-                size: 13,
-              )
             ],
           );
         } else {
@@ -108,13 +104,18 @@ class _EventLabel extends StatelessWidget {
         ),
       ),
       margin: EdgeInsets.only(right: 4),
-      height: 20,
+      height: 38,
       width: double.infinity,
-      child: Text(
-        event.totalHours,
-        style: event.eventTextStyle,
-        textAlign: TextAlign.center,
-        overflow: TextOverflow.ellipsis,
+      child: FittedBox(
+        child: Padding(
+          padding: EdgeInsets.all(4),
+          child: Text(
+            event.totalHours,
+            style: event.eventTextStyle,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ),
     );
   }
