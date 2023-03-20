@@ -104,7 +104,7 @@ class _EventLabel extends StatelessWidget {
         ),
       ),
       margin: EdgeInsets.only(right: 4),
-      height: 38,
+      height: 36,
       width: double.infinity,
       child: FittedBox(
         child: Padding(
