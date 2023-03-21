@@ -68,15 +68,22 @@ class EventLabels extends HookConsumerWidget {
       itemCount: len,
       itemBuilder: (context, index) {
         if (hasEnoughSpace) {
-          return _EventLabel(eventsOnTheDay[index]);
+          return _EventLabel(
+            eventsOnTheDay[index],
+            cellHeight,
+          );
         } else if (index < maxIndex) {
-          return _EventLabel(eventsOnTheDay[index]);
+          return _EventLabel(
+            eventsOnTheDay[index],
+            cellHeight,
+          );
         } else if (index == maxIndex) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _EventLabel(
                 eventsOnTheDay[index],
+                cellHeight,
               ),
             ],
           );
@@ -90,9 +97,10 @@ class EventLabels extends HookConsumerWidget {
 
 /// label to show [CalendarEvent]
 class _EventLabel extends StatelessWidget {
-  _EventLabel(this.event);
+  _EventLabel(this.event, this.cellHeight);
 
   final CalendarEvent event;
+  final double cellHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -104,16 +112,15 @@ class _EventLabel extends StatelessWidget {
         ),
       ),
       margin: EdgeInsets.only(right: 4),
-      height: 36,
+      height: cellHeight / 1.5,
       width: double.infinity,
       child: FittedBox(
         child: Padding(
-          padding: EdgeInsets.all(4),
+          padding: EdgeInsets.all(3),
           child: Text(
             event.totalHours,
             style: event.eventTextStyle,
             textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
           ),
         ),
       ),
