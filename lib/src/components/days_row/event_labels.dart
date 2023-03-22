@@ -86,7 +86,7 @@ class _EventLabel extends StatelessWidget {
           Radius.circular(5),
         ),
       ),
-      margin: EdgeInsets.only(right: 4),
+      margin: EdgeInsets.only(right: 2, left: 2),
       height: (cellHeight / 1.7) > 36 ? 36 : (cellHeight / 1.7),
       width: double.infinity,
       child: FittedBox(
