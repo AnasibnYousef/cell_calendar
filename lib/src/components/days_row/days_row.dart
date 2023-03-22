@@ -141,8 +141,8 @@ class _TodayLabel extends StatelessWidget {
         .copyWith(fontWeight: FontWeight.w500);
     final textStyle = caption.merge(dateTextStyle);
     return Container(
-      height: 15,
-      width: 15,
+      height: 18,
+      width: 18,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: todayMarkColor,
