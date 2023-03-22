@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../calendar_event.dart';
 
 /// Numbers to return accurate events in the cell.
-const dayLabelContentHeight = 16;
-const dayLabelVerticalMargin = 4;
+const dayLabelContentHeight = 12;
+const dayLabelVerticalMargin = 3;
 const _dayLabelHeight = dayLabelContentHeight + (dayLabelVerticalMargin * 2);
 
 const _eventLabelContentHeight = 13;
@@ -60,38 +60,13 @@ class EventLabels extends HookConsumerWidget {
     final maxIndex = _maxIndex(cellHeight, eventsOnTheDay.length);
     int len = 0;
     if (eventsOnTheDay.length > 0) {
-      len = 1;
+      return _EventLabel(
+        eventsOnTheDay[0],
+        cellHeight,
+      );
+    } else {
+      return SizedBox.shrink();
     }
-    return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: len,
-      itemBuilder: (context, index) {
-        if (hasEnoughSpace) {
-          return _EventLabel(
-            eventsOnTheDay[index],
-            cellHeight,
-          );
-        } else if (index < maxIndex) {
-          return _EventLabel(
-            eventsOnTheDay[index],
-            cellHeight,
-          );
-        } else if (index == maxIndex) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _EventLabel(
-                eventsOnTheDay[index],
-                cellHeight,
-              ),
-            ],
-          );
-        } else {
-          return SizedBox.shrink();
-        }
-      },
-    );
   }
 }
 
@@ -112,9 +87,10 @@ class _EventLabel extends StatelessWidget {
         ),
       ),
       margin: EdgeInsets.only(right: 4),
-      height: cellHeight / 1.7,
+      height: (cellHeight / 1.7) > 36 ? 36 : (cellHeight / 1.7),
       width: double.infinity,
       child: FittedBox(
+        fit: BoxFit.scaleDown,
         child: Padding(
           padding: EdgeInsets.all(3),
           child: Text(
